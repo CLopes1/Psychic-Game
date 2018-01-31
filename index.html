@@ -14,7 +14,7 @@
 
     </header>
 
-    <p>Guess what letter I'm thinking of. Press any key to start the game.</p>
+    <p>Guess what letter I'm thinking of. Enter your guess on the keyboard.</p>
     <div id="game">
 
 
@@ -33,20 +33,22 @@
 
 
 
+        
         // This function is run whenever the user presses a key.
         document.onkeyup = function (event) {
 
             // Determines which key was pressed.
             var userGuess = event.key
-            // console.log(userGuess)
+            console.log(userGuess)
 
             // Randomly chooses a choice from the computerChoices array. This is the Computer's guess.
             var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)]
-            // console.log(computerGuess)
+            console.log(computerGuess)
 
             // This logic determines the outcome of the game (win/loss), and increments the appropriate number
             if (userGuess === computerGuess) {
                 wins++
+                guesses--
             }
 
             else {
@@ -54,11 +56,11 @@
                 guesses--
             }
 
-            // Creating a variable to hold our new HTML. Our HTML now keeps track of the user and computer guesses, and wins/losses.
+            // html for our scoreboard
             var html =
                 "<p>Wins: " + wins + "</p>" +
                 "<p>Losses: " + losses + "</p>" +
-                "<p>Guesses Left: " + left + "</p>" +
+                "<p>Guesses Left: " + guesses + "</p>" +
                 "<p>Your Guesses so far: " + userGuess + "</p>";
             // Set the inner HTML contents of the #game div to our html string
             document.querySelector("#game").innerHTML = html;
