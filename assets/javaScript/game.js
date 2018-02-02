@@ -7,13 +7,17 @@ var losses = 0
 var guessLeft = 10
 var wrongGuess = 0
 var guessed = []
-var computerChoice =""
+
 
 
 
 // computer chooses a letter from the computerChoices array. This is the Computer's guess.
+
+
 var computerChoice = letters[Math.floor(Math.random() * letters.length)]
 console.log(computerChoice)
+
+
 
 // This function is run whenever the user presses a key.
 document.onkeyup = function (event) {
@@ -30,7 +34,7 @@ document.onkeyup = function (event) {
         wins++
         alert("You guessed right. Nice work!")
         
-    }
+    } 
 
     if (userGuess != computerChoice) {
         wrongGuess++
