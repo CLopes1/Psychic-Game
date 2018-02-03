@@ -4,19 +4,25 @@ var letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", 
 // Creating variables to hold the number of wins, losses, guesses left, and letters guessed. 
 var wins = 0
 var losses = 0
-var guessLeft = 10
+var maxGuesses = 10
+var guessLeft = maxGuesses
 var wrongGuess = 0
 var guessed = []
-
+var computerChoice = letterGuess()
+console.log("computer choice=" + computerChoice)
 
 
 
 // computer chooses a letter from the computerChoices array. This is the Computer's guess.
 
+function letterGuess () {
+return letters[Math.floor(Math.random() * letters.length)]
+}
 
-var computerChoice = letters[Math.floor(Math.random() * letters.length)]
-console.log(computerChoice)
-
+function resetGame () {
+    guessLeft = maxGuesses
+    guessed =[]
+}
 
 
 // This function is run whenever the user presses a key.
@@ -33,7 +39,9 @@ document.onkeyup = function (event) {
     if (userGuess === computerChoice) {
         wins++
         alert("You guessed right. Nice work!")
-        
+        computerChoice = letterGuess()
+        console.log("computer choice=" + computerChoice)
+        resetGame()
     } 
 
     if (userGuess != computerChoice) {
@@ -45,8 +53,7 @@ document.onkeyup = function (event) {
     if (guessLeft === 0) {
         losses++
         alert("Game Over! ")
-        guessLeft=10
-        guessed=[]
+        resetGame()
     }
 
     // html for scores
